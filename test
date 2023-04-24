@@ -1,0 +1,1 @@
+select distinct a.name from users u left join user_accounts ua on u.userkey=ua.userkey left join accounts a on ua.accountkey=a.accountkey where a.name=u.username or a.name=concat('NDA"
