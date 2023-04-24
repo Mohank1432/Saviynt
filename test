@@ -2,3 +2,7 @@ select distinct a.name from users u left join user_accounts ua on u.userkey=ua.u
 
 
 select distinct a.name from accounts a join user_accounts ua on a.accountkey=ua.accountkey join users u on ua.userkey=u.userkey where a.name=u.username or a.name=concat('NDA',u.lastname,substr(u.firstname,1,1))
+
+
+(&(objectClass=group)(CN=TestAllowInteractiveLogin)),
+(&(objectClass=group)(CN=TestDenyInteractiveLogin))
