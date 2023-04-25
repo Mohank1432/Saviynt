@@ -6,3 +6,10 @@ select distinct a.name from accounts a join user_accounts ua on a.accountkey=ua.
 
 (&(objectClass=group)(CN=TestAllowInteractiveLogin)),
 (&(objectClass=group)(CN=TestDenyInteractiveLogin))
+
+Name : PAM ADM Approval Email Template
+To : kkrishna@cambridgeassociates.com
+Cc :
+Subject : Approval Notification - Action Required
+Bcc :
+From : CAIGANotifications-test@saviynt.com
