@@ -1,0 +1,30 @@
+select distinct a.name from users u left join user_accounts ua on u.userkey=ua.userkey left join accounts a on ua.accountkey=a.accountkey where a.name=u.username or a.name=concat('NDA"
+
+
+select distinct a.name from accounts a join user_accounts ua on a.accountkey=ua.accountkey join users u on ua.userkey=u.userkey where a.name=u.username or a.name=concat('NDA',u.lastname,substr(u.firstname,1,1))
+
+
+(&(objectClass=group)(CN=TestAllowInteractiveLogin)),
+(&(objectClass=group)(CN=TestDenyInteractiveLogin))
+
+Name : PAM ADM Approval Email Template
+To : kkrishna@cambridgeassociates.com
+Cc :
+Subject : Approval Notification - Action Required
+Bcc :
+From : CAIGANotifications-test@saviynt.com
+
+
+select hr.Name as 'Rule Name',hr.description 'Rule Description',hra.objectvalue from hanarule hr join hanaruleattribute hra on hr.hanarulekey=hra.hanarule where hra.conditionoraction like 'ACTN' and hr.type=2 and hra.objectname=21 and hr.name like 'CA_RBAC%'
+
+RULE NAME	RULE DESCRIPTION	OBJECTVALUE
+CA_RBAC - Location, Cost center and User Type		44,45,46,58,48,49,50,51,52
+CA_RBAC - Location, Cost center and User Type - FeedFile import		44,45,46,58,48,49,50,51,52
+CA_RBAC_Joiner_UUR		161,162,163
+CA_RBAC_Joiner_UUR_Import		161,162,163
+CA_RBAC_Mover_CostCenter_ExceptionTransferRule_Import		129,130,131
+CA_RBAC_Mover_CostCenter_Rule_Import		161,162,163
+CA_RBAC_Mover_CostCenter_Rule_UI		161,162,163
+CA_RBAC_Mover_Provision_UUR_Import		129,130,131
+CA_RBAC_Mover_Provision_UUR_UI		129,130,131
+CA_RBAC_Mover_UserType		108,109
