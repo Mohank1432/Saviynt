@@ -29,6 +29,6 @@ CA_RBAC_Mover_Provision_UUR_Import		129,130,131
 CA_RBAC_Mover_Provision_UUR_UI		129,130,131
 CA_RBAC_Mover_UserType		108,109
 
-
+RqG9PerZTDK8d3cPWZi7
 
 select hr.Name as 'Rule Name',hr.description 'Rule Description',hra.objectvalue from hanarule hr join hanaruleattribute hra on hr.hanarulekey=hra.hanarule where hra.conditionoraction like 'ACTN' and hr.type=2 and hra.objectname=21 and hr.name like 'CA_RBAC%'
