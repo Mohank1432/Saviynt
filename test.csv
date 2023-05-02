@@ -28,3 +28,19 @@ CA_RBAC_Mover_CostCenter_Rule_UI		161,162,163
 CA_RBAC_Mover_Provision_UUR_Import		129,130,131
 CA_RBAC_Mover_Provision_UUR_UI		129,130,131
 CA_RBAC_Mover_UserType		108,109
+
+
+SELECT 
+    hr.Name AS 'Rule Name',
+    hra.objectvalue AS 'Object Value'
+FROM 
+    hanarule hr 
+JOIN 
+    hanaruleattribute hra ON hr.hanarulekey = hra.hanarule 
+WHERE 
+    hra.conditionoraction LIKE 'ACTN' 
+    AND hr.type = 2 
+    AND hra.objectname = 21 
+    AND hr.name LIKE 'CA_RBAC%'
+ORDER BY 
+    hr.Name, hra.objectvalue ASC
