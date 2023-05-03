@@ -86,4 +86,10 @@ AND hra.objectname=21 
 AND hr.name LIKE 'CA_RBAC%'
 ORDER BY hr.Name, hra.objectvalue
 
+-----------------------------------------------------
 
+Update Accounts set accounttype='Service Account' where endpointkey=40 and name like 'svc%';
+INSERT INTO accountowners(accountkey, owneruserkey, rank, updatedate, updateuser) 
+SELECT a.accountkey AS accountkey, u.userkey AS owneruserkey, '1' AS rank, Now() AS updatedate, '1' AS updateuser FROM accounts a LEFT JOIN users u ON a.customproperty36 = u.username WHERE a.endpointkey = 40 AND a.status IN ( 1, 'Manually Provisioned') AND a.customproperty36 is NOT NULL;
+INSERT INTO accountowners(accountkey, owneruserkey, rank, updatedate, updateuser) 
+SELECT a.accountkey AS accountkey, u.userkey AS owneruserkey, '26' AS rank, Now() AS updatedate, '1' AS updateuser FROM accounts a LEFT JOIN users u ON a.customproperty36 = u.username WHERE a.endpointkey = 40 AND a.status IN ( 1, 'Manually Provisioned') AND a.customproperty36 is NOT NULL
