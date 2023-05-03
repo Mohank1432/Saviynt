@@ -62,7 +62,7 @@ ORDER BY 
     
     SELECT hr.Name AS 'Rule Name', 
        TRIM(SUBSTRING(SUBSTRING_INDEX(hra.objectvalue, ',', numbers.n), 
-       LENGTH(SUBSTRING_INDEX(hra.objectvalue, ',', numbers.n - 1)) + 1)) AS 'Object Value'
+       LENGTH(SUBSTRING_INDEX(hra.objectvalue, ',', numbers.n - 1)) + 2)) AS 'Object Value'
 FROM hanarule hr 
 JOIN hanaruleattribute hra ON hr.hanarulekey = hra.hanarule 
 JOIN (SELECT 1 n UNION ALL SELECT 2 UNION ALL SELECT 3 UNION ALL SELECT 4
