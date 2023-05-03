@@ -93,3 +93,22 @@ INSERT INTO accountowners(accountkey, owneruserkey, rank, updatedate, updateuser
 SELECT a.accountkey AS accountkey, u.userkey AS owneruserkey, '1' AS rank, Now() AS updatedate, '1' AS updateuser FROM accounts a LEFT JOIN users u ON a.customproperty36 = u.username WHERE a.endpointkey = 40 AND a.status IN ( 1, 'Manually Provisioned') AND a.customproperty36 is NOT NULL;
 INSERT INTO accountowners(accountkey, owneruserkey, rank, updatedate, updateuser) 
 SELECT a.accountkey AS accountkey, u.userkey AS owneruserkey, '26' AS rank, Now() AS updatedate, '1' AS updateuser FROM accounts a LEFT JOIN users u ON a.customproperty36 = u.username WHERE a.endpointkey = 40 AND a.status IN ( 1, 'Manually Provisioned') AND a.customproperty36 is NOT NULL
+
+
+
+
+SELECT hr.Name AS 'RULE NAME', TRIM(REPLACE(SUBSTRING(hra.objectvalue, num, CHARINDEX(',', hra.objectvalue + ',', num) - num), ',', '')) AS 'OBJECTVALUE'
+FROM hanarule hr 
+JOIN hanaruleattribute hra 
+ON hr.hanarulekey = hra.hanarule 
+CROSS JOIN (
+    SELECT number AS num
+    FROM master.dbo.spt_values
+    WHERE type = 'P' AND number <= LEN(hra.objectvalue) + 1
+) AS n
+WHERE hra.conditionoraction LIKE 'ACTN' 
+AND hr.type = 2 
+AND hra.objectname = 21 
+AND hr.name LIKE 'CA_RBAC%'
+AND SUBSTRING(',' + hra.objectvalue, num, 1) = ','
+ORDER BY hr.Name, hra.objectvalue
