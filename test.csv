@@ -112,3 +112,17 @@ AND hra.objectname = 21 
 AND hr.name LIKE 'CA_RBAC%'
 AND SUBSTRING(',' + hra.objectvalue, num, 1) = ','
 ORDER BY hr.Name, hra.objectvalue
+------------------------------------------------------------
+
+
+
+select u.username, u.displayname,u.email,e.endpointname,group_concat(r.role_name) as 'Role Names'from users u join role_user_account rua on u.userkey = rua.userkey join roles r on rua.rolekey = r.rolekey join endpoints e on r.endpointkey = e.endpointkey join accounts a on rua.accountkey=a.accountkey where a.status=1 and u.statuskey=1 and rua.accountkey in (select accountkey from accounts where endpointkey in (select distinct ek.endpointkey from endpoints ek where substring(ek.roletypeasjson,7,1)=1)) group by u.username,e.endpointname having count(*) > 1 order by u.username
+
+
+
+
+
+
+USERNAME	DISPLAYNAME	EMAIL	ENDPOINTNAME	ROLE NAMES
+gkhatri	Gaurav Khatri	gkhatri@cambridgeassociates.com	Brooklyn	Brooklyn Users,Brooklyn Users
+gkhatri	Gaurav Khatri	gkhatri@cambridgeassociates.com	Vermilion_DB	Vermilion Operations Group,Vermilion Report Preparer,Vermilion Report Quality Checker
