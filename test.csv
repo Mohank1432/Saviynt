@@ -13,8 +13,18 @@ Cc :
 Subject : Approval Notification - Action Required
 Bcc :
 From : CAIGANotifications-test@saviynt.com
+-----------------------------------------------------------
+1.	Update ENT – Manager Data Public to add IMDB Power User role, including adding the role to all existing users in the cost center to the IMDB Power User role
+a.	Artifacts
+2.	Pause WSRETRY and Workday Import jobs while updates to SAV_Users Report is being made
+a.	No artifacts – just pausing/rescheduling jobs
+3.	Update to CA IGA Users having more than one role in same Single Select application report to remove Optica Research & Operating Metrics roles that are not true single select applications
+a.	Artifacts
+4.	Update to CA IGA Users vs roles for Optica Research role to add PI Security Tool role and delete CA IGA Users vs roles for Optica Research PI Security Tool report
+a.	Artifacts
 
 
+--------------------------------------------------------------------
 select hr.Name as 'Rule Name',hr.description 'Rule Description',hra.objectvalue from hanarule hr join hanaruleattribute hra on hr.hanarulekey=hra.hanarule where hra.conditionoraction like 'ACTN' and hr.type=2 and hra.objectname=21 and hr.name like 'CA_RBAC%'
 
 RULE NAME	RULE DESCRIPTION	OBJECTVALUE
