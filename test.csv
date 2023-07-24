@@ -1,5 +1,6 @@
 select customproperty19,username,DATE_FORMAT(startdate,"%Y-%m-%d") as startdate,curdate(),ADDDATE(curdate(), INTERVAL -15 DAY) as 'XYZ' from users where DATE_FORMAT(startdate,"%Y-%m-%d") > ADDDATE(curdate(), INTERVAL -15 DAY) and DATE_FORMAT(startdate,"%Y-%m-%d") < curdate() and USERNAME not like '%2' AND CUSTOMPROPERTY19 is null
 
+You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '\"%Y-%m-%d\") > ADDDATE(curdate(), INTERVAL -15 DAY) and DATE_FORMAT(startdate,\' at line 1[m
 =======================================
 
 
