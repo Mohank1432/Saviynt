@@ -1,3 +1,41 @@
+{
+	"DISABLEACCOUNTCHECKRULE": [
+		"${user.customproperty6}"
+	],
+	"USEDNFROMACCOUNT": "YES",
+	"MOVEDN": "NO",
+	"REMOVEGROUPS": "NO",
+	"AFTERMOVEACTIONS": {
+		"userAccountControl": "512",
+		"employeeNumber": "${user.employeeid!=null?user.employeeid:''}",
+		"employeeID": "${user.employeeid!=null?user.employeeid:''}",
+		"employeeType": "${user.employeeType!=null?user.employeeType:''}",
+		"cn": "${user.displayname!=null?user.displayname:''}",
+		"givenName": "${user.firstname!=null?user.firstname:''}",
+		"sn": "${user.lastname!=null?user.lastname:''}",
+		"displayName":"${user.customproperty4='Contingent Worker'?user.displayname+' (Contractor)':user.displayname}",
+		"department": "${user.costcenter!=null?user.costcenter:''}",
+		"title": "${user.title!=null?user.title:''}",
+		"mail": "${user.email!=null?user.email:''}",
+		"mobile": "${user.customproperty2!=null?user.customproperty2:''}",
+		"telephoneNumber": "${user.phonenumber!=null?user.phonenumber:''}",
+		"streetAddress": "${user.street!=null?user.street:''}",
+		"st": "${user.state!=null?user.state:''}",
+		"postalCode": "${user.regioncode!=null?user.regioncode:''}",
+		"co": "${user.country!=null?user.country:''}",
+		"c": "${user.customproperty3!=null?user.customproperty3:''}",
+		"l": "${user.city!=null?user.city:''}",
+		"physicalDeliveryOfficeName": "${user.customproperty5!=null?user.customproperty5:''}",
+		"userPrincipalName": "${user.username+'@cadevcloud.com'}",
+		"manager":  "${manager.customproperty6!=null?manager.customproperty6:''}",
+		"managerUPN": "${manager.username!=null?manager.username:''}",
+		"company": "${user.customproperty4='Contingent Worker'?'':'Cambridge Associates'}",
+"accountExpires":"${if((user.customproperty8!=null) && (user.customproperty4='Contingent Worker')){Calendar cal = Calendar.getInstance(TimeZone.getTimeZone('EST')); cal.setTime(Date.parse('yyyy-MM-dd',user.customproperty8.toString())); cal.add(Calendar.DAY_OF_MONTH, 1); cal.add(Calendar.HOUR_OF_DAY, 5); cal.set(Calendar.MINUTE, 0); cal.set(Calendar.SECOND, 0); cal.set(Calendar.MILLISECOND, 0); Date dat = cal.getTime(); return (dat.getTime()*10000L) + 116444736000000000L;} else {return '9223372036854775807'}}"
+	}
+}
+
+
+====================================================
 select customproperty19,username,DATE_FORMAT(startdate,"%Y-%m-%d") as startdate,curdate(),ADDDATE(curdate(), INTERVAL -15 DAY) as 'XYZ' from users where DATE_FORMAT(startdate,"%Y-%m-%d") > ADDDATE(curdate(), INTERVAL -15 DAY) and DATE_FORMAT(startdate,"%Y-%m-%d") < curdate() and USERNAME not like '%2' AND CUSTOMPROPERTY19 is null
 
 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '\"%Y-%m-%d\") > ADDDATE(curdate(), INTERVAL -15 DAY) and DATE_FORMAT(startdate,\' at line 1[m
