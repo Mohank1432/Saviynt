@@ -1,6 +1,27 @@
 Select e.ENDPOINTNAME as 'Application Name',et.ENTITLEMENTNAME 'Entitlement Type', evh.ENTITLEMENT_VALUE as 'Entitlement',evh.changedField as 'Attribute', evh.oldvalue as 'Old Value',evh.newvalue as 'New Value',evh.createdon as 'Changed On' , evh.requestedby as 'Changed By' from entitlement_values ev left join entitlement_values_history evh on ev.ENTITLEMENT_VALUEKEY=evh.entitlement_valuekey inner join entitlement_types et on et.ENTITLEMENTTYPEKEY=ev.ENTITLEMENTTYPEKEY inner join endpoints e on et.ENDPOINTKEY = e.ENDPOINTKEY order by evh.createdon desc;
 
 
+Select 
+    e.ENDPOINTNAME as 'Application Name',
+    et.ENTITLEMENTNAME as 'Entitlement Type', 
+    evh.ENTITLEMENT_VALUE as 'Entitlement',
+    evh.changedField as 'Attribute',
+    evh.oldvalue as 'Old Value',
+    evh.newvalue as 'New Value',
+    evh.createdon as 'Changed On',
+    evh.requestedby as 'Changed By'
+from 
+    entitlement_values ev
+left join 
+    entitlement_values_history evh on ev.ENTITLEMENT_VALUEKEY = evh.entitlement_valuekey
+inner join 
+    entitlement_types et on et.ENTITLEMENTTYPEKEY = ev.ENTITLEMENTTYPEKEY
+inner join 
+    endpoints e on et.ENDPOINTKEY = e.ENDPOINTKEY
+where 
+    evh.changedField IS NULL OR evh.changedField <> 'User removed'
+order by 
+    evh.createdon desc;
 
 =============================================
 {
